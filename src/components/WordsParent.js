@@ -1,4 +1,5 @@
 import Meaning from './Meaning';
+import Phonetic from './Phonetic';
 
 const WordsParent = ({ object }) => {
   const meanings = object.meanings;
@@ -6,7 +7,9 @@ const WordsParent = ({ object }) => {
   return (
     <div>
       <h2>{object.word}</h2>
-      <p>{object.phonetic}</p>
+      {object.phonetics.map((phonetic, idx) => {
+        return <Phonetic key={idx} object={phonetic} />;
+      })}
 
       {meanings.map((meaning, idx) => {
         return <Meaning key={idx} object={meaning} />;
