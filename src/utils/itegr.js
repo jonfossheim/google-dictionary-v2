@@ -1,12 +1,10 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import WordsParent from './components/WordsParent';
+import axios from 'axios';
 import { BASE_URL } from './utils/api';
 
-function App() {
+const App = () => {
   const [word, setWord] = useState('');
-
-  const [query, setQuery] = useState('Discovery');
+  const [query, setQuery] = useState('Discovery'); // search data
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -24,24 +22,28 @@ function App() {
   const handleFiltering = (e) => {
     setFilter(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setQuery(filter);
+    setFilter('');
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
+          className={'search'}
           type={'text'}
           placeholder={'Search...'}
           value={filter}
           onChange={handleFiltering}
         ></input>
       </form>
-      <WordsParent object={word} />
+
+      {word.word}
     </div>
   );
-}
+};
 
 export default App;
