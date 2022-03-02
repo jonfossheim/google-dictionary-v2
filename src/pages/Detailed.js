@@ -10,19 +10,35 @@ import Definition from '../components/Definition';
 const Detailed = () => {
   const { location } = useParams();
   const [word, setWord] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios.get(BASE_URL + location);
       setWord(data.data[0]);
     };
-    fetchData().catch(console.error);
+    fetchData().catch((error) => setError(error));
+    setTimeout(() => {
+      setLoading(false);
+    }, 750);
   }, [location]);
 
-  if (!word.hasOwnProperty('word')) {
+  if (error) {
     return (
       <div>
-        <strong>{location}</strong> details are loading...
+        <h1>Something Went Wrong!</h1>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
+
+  if (!word.hasOwnProperty('word') || loading) {
+    return (
+      <div className='spinner'>
+        <span className='spinner-inner-1'></span>
+        <span className='spinner-inner-2'></span>
+        <span className='spinner-inner-3'></span>
       </div>
     );
   }
