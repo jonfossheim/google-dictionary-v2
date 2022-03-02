@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Phonetic = ({ object }) => {
   const audio = new Audio(object.audio);
   const start = () => {

@@ -1,19 +1,11 @@
-import Meaning from './Meaning';
-import Phonetic from './Phonetic';
+import { StyledLink } from './navigation/StyledLink';
 
 const WordsParent = ({ object }) => {
-  const meanings = object.meanings;
-
   return (
     <div>
       <h2>{object.word}</h2>
-      {object.phonetics.map((phonetic, idx) => {
-        return <Phonetic key={idx} object={phonetic} />;
-      })}
-
-      {meanings.map((meaning, idx) => {
-        return <Meaning key={idx} object={meaning} />;
-      })}
+      <h3> {object.phonetic}</h3>
+      <StyledLink to={`/${object.word}`}>Hello World</StyledLink>
     </div>
   );
 };
