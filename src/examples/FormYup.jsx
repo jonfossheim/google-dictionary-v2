@@ -1,18 +1,7 @@
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-const schema = yup.object().shape({
-  name: yup.string().required('Please enter your name'),
-  email: yup
-    .string()
-    .required('Please enter an email address')
-    .email('Please enter a valid email address'),
-  message: yup
-    .string()
-    .required('Please enter your message')
-    .min(10, 'The message must be at least 10 characters'),
-});
+import { messageSchema } from '../utils/schemas';
 
 const FormYup = () => {
   const {
@@ -20,7 +9,7 @@ const FormYup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(messageSchema),
   });
 
   const onSubmit = (data) => {

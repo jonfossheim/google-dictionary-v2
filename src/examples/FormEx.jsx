@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+
 const FormEx = () => {
   const {
     register,
@@ -15,9 +16,12 @@ const FormEx = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('firstName')} />
+        <input {...register('firstName')} placeholder='Firstname..' />
 
-        <input {...register('lastName', { required: true })} />
+        <input
+          {...register('lastName', { required: true })}
+          placeholder='Lastname..'
+        />
         {errors.lastName && <span>This field is required</span>}
 
         <button>Send</button>
